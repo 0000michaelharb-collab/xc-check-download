@@ -1,0 +1,22 @@
+name: Download veröffentlichen
+on:
+  push:
+    branches: [main]
+    paths: [XC-Check.apk, VERSION]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Version lesen
+        id: ver
+        run: echo "v=$(cat VERSION)" >> $GITHUB_OUTPUT
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.ver.outputs.v }}
+          name: XC Check ${{ steps.ver.outputs.v }}
+          body: Android-Version von XC Check. Datei XC-Check.apk am Handy antippen und installieren.
+          files: XC-Check.apk
+          make_latest: true
