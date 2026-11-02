@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://0000michaelharb-collab.github.io/xc-check-download/sitemap.xml
